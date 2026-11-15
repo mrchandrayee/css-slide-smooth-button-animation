@@ -1,0 +1,159 @@
+* { box-sizing: border-box; }
+
+:root {
+  color-scheme: dark;
+  --page: #050611;
+  --card: #080b18;
+  --orange: #ff781f;
+  --ease: .4s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 25px 16px 34px;
+  background: #03040b;
+  color: #f5f6ff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.page { width: min(100%, 700px); margin: 0 auto; }
+.heading { margin: 0 0 20px; }
+.heading h1 {
+  margin: 0;
+  color: #f5f5fa;
+  font-size: clamp(23px, 4.5vw, 32px);
+  line-height: 1.2;
+  font-weight: 800;
+}
+.heading p { margin: 7px 0 0; color: #7e8499; font-size: 11px; }
+
+.demo-card {
+  min-height: 158px;
+  margin: 0 0 18px;
+  padding: 18px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 17px;
+  border: 2px solid var(--orange);
+  background: linear-gradient(135deg, #080b1b, #050615);
+}
+.fx-btn {
+  --accent: #17bf62;
+  position: relative;
+  isolation: isolate;
+  width: 130px;
+  height: 42px;
+  flex: 0 0 42px;
+  overflow: hidden;
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  color: var(--accent);
+  background: transparent;
+  font: 700 11px Arial, sans-serif;
+  cursor: pointer;
+  transition: color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.fx-btn span { position: relative; z-index: 2; pointer-events: none; }
+.fx-btn::before,
+.fx-btn::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  background: var(--accent);
+  pointer-events: none;
+}
+.fx-btn:hover, .fx-btn:focus-visible {
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* 1. Left-to-right fill */
+.left-fill { --accent: #16bd60; }
+.left-fill::before {
+  inset: 0 auto 0 0;
+  width: 0;
+  transition: width var(--ease);
+}
+.left-fill:hover::before, .left-fill:focus-visible::before { width: 100%; }
+
+/* 2. Center-out fill */
+.center-fill { --accent: #2868ed; }
+.center-fill::before {
+  top: 0; bottom: 0; left: 50%;
+  width: 0;
+  transform: translateX(-50%);
+  transition: width var(--ease);
+}
+.center-fill:hover::before, .center-fill:focus-visible::before { width: 120%; }
+
+/* 3. Diagonal skewed wipe */
+.diagonal { --accent: #ff9a00; }
+.diagonal::before {
+  top: 0; bottom: 0; left: -20%;
+  width: 0;
+  transform: skewX(-30deg);
+  transition: width var(--ease), left var(--ease);
+}
+.diagonal:hover::before, .diagonal:focus-visible::before {
+  left: -5%;
+  width: 120%;
+}
+
+/* 4. Dual fill from both sides */
+.dual-fill { --accent: #e83291; }
+.dual-fill::before {
+  top: 0; bottom: 0; left: 0;
+  width: 0;
+  transition: width var(--ease);
+}
+.dual-fill::after {
+  top: 0; bottom: 0; right: 0;
+  width: 0;
+  transition: width var(--ease);
+}
+.dual-fill:hover::before, .dual-fill:hover::after,
+.dual-fill:focus-visible::before, .dual-fill:focus-visible::after { width: 50%; }
+
+/* 5. Liquid-like rising fill */
+.liquid-fill { --accent: #00b7d6; }
+.liquid-fill::before {
+  left: -10%;
+  bottom: -100%;
+  width: 120%;
+  height: 200%;
+  border-radius: 42% 48% 0 0;
+  transform: rotate(0deg);
+  transition: bottom .55s ease, border-radius .55s ease;
+}
+.liquid-fill:hover::before, .liquid-fill:focus-visible::before {
+  bottom: 0;
+  border-radius: 42% 48% 0 0;
+}
+.liquid-fill:hover, .liquid-fill:focus-visible { color: #fff; }
+
+pre {
+  width: 100%;
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border-radius: 5px;
+  color: #8bd85e;
+  background: #02040a;
+  font: 10px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+}
+code { font-family: inherit; }
+footer { padding: 4px 0; color: #73798b; text-align: center; font-size: 10px; }
+
+@media (max-width: 480px) {
+  body { padding: 18px 10px 25px; }
+  .demo-card { min-height: 150px; padding: 15px 10px 10px; margin-bottom: 14px; }
+  .fx-btn { width: 124px; height: 40px; flex-basis: 40px; }
+  pre { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}

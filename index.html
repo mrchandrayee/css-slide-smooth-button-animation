@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050611">
+  <title>Slide Smooth Button Animation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="heading">
+      <h1>Slide smooth button animation</h1>
+      <p>Five CSS hover effects · Move your pointer over each button</p>
+    </header>
+
+    <section class="demo-card">
+      <button class="fx-btn left-fill" type="button"><span>Left Fill</span></button>
+      <pre><code>.btn1::before {
+  width: 0%;
+  transition: .4s;
+}
+.btn1:hover::before {
+  width: 100%;
+}</code></pre>
+    </section>
+
+    <section class="demo-card">
+      <button class="fx-btn center-fill" type="button"><span>Center Fill</span></button>
+      <pre><code>.btn2::before {
+  left: 50%;
+  transform: translateX(-50%);
+  transition: .4s;
+}
+.btn2:hover::before {
+  width: 120%;
+}</code></pre>
+    </section>
+
+    <section class="demo-card">
+      <button class="fx-btn diagonal" type="button"><span>Diagonal</span></button>
+      <pre><code>.btn3::before {
+  transform: skewX(-30deg);
+}
+.btn3:hover::before {
+  left: 100%;
+}</code></pre>
+    </section>
+
+    <section class="demo-card">
+      <button class="fx-btn dual-fill" type="button"><span>Dual Fill</span></button>
+      <pre><code>.btn4::before,
+.btn4::after {
+  width: 0%;
+  transition: .4s;
+}
+.btn4:hover::before,
+.btn4:hover::after {
+  width: 50%;
+}</code></pre>
+    </section>
+
+    <section class="demo-card">
+      <button class="fx-btn liquid-fill" type="button"><span>Liquid Fill</span></button>
+      <pre><code>.btn5::before {
+  bottom: -100%;
+}
+.btn5:hover::before {
+  bottom: 0;
+}</code></pre>
+    </section>
+
+    <footer>HTML · CSS · Smooth transitions · No JavaScript required</footer>
+  </main>
+</body>
+</html>
